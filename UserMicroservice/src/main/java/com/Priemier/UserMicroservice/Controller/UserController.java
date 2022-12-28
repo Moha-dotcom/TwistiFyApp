@@ -4,12 +4,14 @@ package com.Priemier.UserMicroservice.Controller;
 import com.Priemier.UserMicroservice.Message;
 import com.Priemier.UserMicroservice.model.AccountUser;
 import com.Priemier.UserMicroservice.service.UserService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 
 @RestController
@@ -24,7 +26,7 @@ public class UserController {
     }
     @GetMapping("/users/{id}")
     @CrossOrigin()
-    private AccountUser getUser(@RequestParam int userid){
+    private AccountUser getUser(@RequestParam ObjectId userid){
         return userservice.getUser(userid);
     }
     @PostMapping("/users")
@@ -33,12 +35,12 @@ public class UserController {
         return userservice.createUser(accountUser);
     }
 
-    @PutMapping("/users")
-    public Message UpdateAccountUser(AccountUser user, int userId){
-        return new Message("Deleteing User", LocalDate.now());
-    }
-    @DeleteMapping("/users")
-    private Message deleteUser(){
-            return new Message("Deleteing User", LocalDate.now());
-    }
+//    @PutMapping("/users")
+//    public Message UpdateAccountUser(AccountUser user, int userId){
+//        return new Message("Deleteing User", LocalDate.now());
+//    }
+//    @DeleteMapping("/users")
+//    private Message deleteUser(){
+//            return new Message("Deleteing User", LocalDate.now());
+//    }
 }
