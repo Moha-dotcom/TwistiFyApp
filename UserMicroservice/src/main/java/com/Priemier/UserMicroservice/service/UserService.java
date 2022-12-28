@@ -3,11 +3,14 @@ package com.Priemier.UserMicroservice.service;
 import com.Priemier.UserMicroservice.Message;
 import com.Priemier.UserMicroservice.dao.UserRepository;
 import com.Priemier.UserMicroservice.model.AccountUser;
+import jdk.jshell.Snippet;
 import org.bson.types.ObjectId;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.nio.ByteBuffer;
 import java.time.LocalDate;
@@ -29,17 +32,18 @@ public class UserService {
     public List<AccountUser> getAllUser(){
         return userRepository.findAll();
     }
-
     // Get one User
     public AccountUser getUser(ObjectId id){
 //        AccountUser returnedUser = new AccountUser();
         return userRepository.findById(id).get();
     }
     // Create a User
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Message createUser(AccountUser user){
         AccountUser newUser = new AccountUser();
         newUser.setUserId(new ObjectId());
         newUser.setEmail(user.getEmail());
+        newUser.setUsername(user.getUsername());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         Optional<AccountUser> user1 = userRepository.findById(newUser.getUserId());
         if(user1.isPresent()){
@@ -51,27 +55,28 @@ public class UserService {
         }
     }
     // Update User
-//    public Message UpdateAccountUser(AccountUser user, UUID userId){
-//        Optional<AccountUser> users = userRepository.findById(userId);
-//       if(users.isPresent()){
-//          AccountUser user1 = new AccountUser();
-//          user1.setEmail(user.getEmail());
-//          user1.setPassword(user.getPassword());
-//          userRepository.save(user1);
-//          return new Message("SuccessFully Saved user", LocalDate.now());
-//       }else{
-//           return new Message("User doesn't Exist Please Create a new Account", LocalDate.now());
-//       }
-//    }
-//    // Delete User
-//    public Message deleteAccountUser(UUID userId){
-//        AccountUser userFound = getUser(userId);
-//        Optional<AccountUser> user1 = userRepository.findById(userId);
-//        if(user1.isPresent()){
-//            userRepository.delete(userFound);
-//            return new Message("SuccessFully Deleted user", LocalDate.now());
-//        }else{
-//            return new Message("User doesn't Exist", LocalDate.now());
-//        }
-//    }
+    public Message UpdateAccountUser(AccountUser user, ObjectId userId){
+        Optional<AccountUser> users = userRepository.findById(userId);
+       if(users.isPresent()){
+          AccountUser user1 = new AccountUser();
+          user1.setEmail(user.getEmail());
+          user1.setPassword(user.getPassword());
+          user1.setUsername(user.getUsername());
+          userRepository.save(user1);
+          return new Message("SuccessFully Saved user", LocalDate.now());
+       }else{
+           return new Message("User doesn't Exist Please Create a new Account", LocalDate.now());
+       }
+    }
+    // Delete User
+    public Message deleteAccountUser(ObjectId userId){
+        AccountUser userFound = getUser(userId);
+        Optional<AccountUser> user1 = userRepository.findById(userId);
+        if(user1.isPresent()){
+            userRepository.delete(userFound);
+            return new Message("SuccessFully Deleted user", LocalDate.now());
+        }else{
+            return new Message("User doesn't Exist", LocalDate.now());
+        }
+    }
 }

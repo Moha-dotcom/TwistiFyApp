@@ -4,8 +4,10 @@ package com.Priemier.UserMicroservice.Controller;
 import com.Priemier.UserMicroservice.Message;
 import com.Priemier.UserMicroservice.model.AccountUser;
 import com.Priemier.UserMicroservice.service.UserService;
+import jakarta.validation.Valid;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -31,7 +33,8 @@ public class UserController {
     }
     @PostMapping("/users")
     @CrossOrigin()
-    private Message createUser(@RequestBody AccountUser accountUser){
+    @Validated()
+    private Message createUser(@Valid @RequestBody AccountUser accountUser){
         return userservice.createUser(accountUser);
     }
 
