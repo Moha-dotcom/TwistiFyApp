@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="/dist/output.css" rel="stylesheet">
+
 </head>
 <body class="h-full">
 <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -23,6 +24,13 @@
               <input id="email" name="email" type="email" autocomplete="email" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
             </div>
           </div>
+
+          <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+            <div class="mt-1">
+              <input id="username" name="username" type="text" autocomplete="email" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
             <!--PassWord-->
           <div>
             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
@@ -32,9 +40,9 @@
           </div>
             <!--Password Confirmation -->
           <div>
-            <label for="password" class="block text-sm font-medium text-gray-700">Password Confirmation</label>
+            <label for="password1" class="block text-sm font-medium text-gray-700">Password Confirmation</label>
             <div class="mt-1">
-              <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+              <input id="password1" name="passwordConfirmation" type="password" autocomplete="current-password" required class=" password2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
             </div>
           </div>
   
@@ -43,12 +51,12 @@
               <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
               <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
             </div>
-  
-        
           </div>
+
+          <a class="ml-2 block text-sm text-gray-900" href="http://localhost:9003/signin">Sign in here</a>
   
           <div>
-            <button type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Sign up</button>
+            <button id="btn" type="submit" class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Sign up</button>
           </div>
          
         </form>
@@ -57,6 +65,9 @@
       </div>
     </div>
   </div>
+
+
+  <!-- <script src="index.js"></script> -->
   
 </body>
 </html>
