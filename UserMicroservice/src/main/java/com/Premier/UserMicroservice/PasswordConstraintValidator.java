@@ -1,4 +1,4 @@
-package com.Priemier.UserMicroservice;
+package com.Premier.UserMicroservice;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
