@@ -24,7 +24,7 @@ public class UserLoginRestController {
 
     @PostMapping()
     public ResponseEntity<Message> loginUser(@RequestBody User user) {
-        Optional<User> user1 = userService.findUserByUsernameContaining(user.getUsername());
+        Optional<User> user1 = userService.findUserByUsername(user.getUsername());
         if(!user1.isPresent()){
             return new ResponseEntity(new Message(new Data("Username is not available")), HttpStatus.NOT_FOUND);
         }

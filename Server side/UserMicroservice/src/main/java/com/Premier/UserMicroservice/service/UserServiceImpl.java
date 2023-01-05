@@ -15,10 +15,18 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public Optional<User> findUserByUsernameContaining(String username) {
+    public Optional<User> findUserByUsername(String username) {
         return Optional.ofNullable(userRepository.findByUsername(username));
     }
 
+    /**
+     * @param email
+     * @return
+     */
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findUserByEmailContaining(email);
+    }
 
 
     @Override
